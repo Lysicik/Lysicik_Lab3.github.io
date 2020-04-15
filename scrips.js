@@ -1,12 +1,12 @@
 //Getting data and place  it
-const sectors = ['Северный', 'Северо-Восточный', 'Восточный', 'Юго-Восточный', 'Южный', 'Юго-Западный', 'Западный', 'Северо-Западный', 'Северный'];
+const sectors = ['Северный', 'Северо-Восточный', 'Восточный', 'Юго-Восточный', 'Южный', 'Юго-Западный', 'Западный', 'Северо-Западный'];
 const time_day = ["Утром: ", "Днём: ", "Вечером: ", "Ночью: "];
 const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября'];
 const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
-let afterStr = "&deg;<br>";
+let oC = "&deg;<br>";
 let NowDate = new Date();
-let weatherIcon = document.createElement('img');
+let WIcon = document.createElement('img');
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,16 +37,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         addTo(`day${i}Body`, `.day${i}`, 'dayFlex');
                         addTo(`dayText${i}`, `.day${i}Body`);
 
-                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[0] + Math.round(data.daily[i].temp.day - 273) + afterStr);
-                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[1] + Math.round(data.daily[i].temp.morn - 273) + afterStr);
-                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[2] + Math.round(data.daily[i].temp.eve - 273) + afterStr);
-                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[3] + Math.round(data.daily[i].temp.night - 273) + afterStr);
+                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[0] + Math.round(data.daily[i].temp.day - 273) + oC);
+                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[1] + Math.round(data.daily[i].temp.morn - 273) + oC);
+                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[2] + Math.round(data.daily[i].temp.eve - 273) + oC);
+                        document.querySelector(`.dayText${i}`).innerHTML += (time_day[3] + Math.round(data.daily[i].temp.night - 273) + oC);
 
                         addTo(`dayIcon${i}`, `.day${i}Body`);
 
-                        weatherIcon.classList.add("weatherIcon1");
-                        weatherIcon.src = `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`;
-                        document.querySelector(`.dayIcon${i}`).append(weatherIcon.cloneNode(true));
+                        WIcon.classList.add("WIcon2");
+                        WIcon.src = `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`;
+                        document.querySelector(`.dayIcon${i}`).append(WIcon.cloneNode(true));
                     }
 
 
@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //иконки погоды
-                    weatherIcon.classList.remove("weatherIcon1");
-                    weatherIcon.classList.add("weatherIcon0");
-                    weatherIcon.src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`;
-                    document.querySelector(`.CurrentDayDownLeft`).append(weatherIcon.cloneNode(true));
+                    WIcon.classList.remove("WIcon2");
+                    WIcon.classList.add("WIcon1");
+                    WIcon.src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`;
+                    document.querySelector(`.CurrentDayDownLeft`).append(WIcon.cloneNode(true));
                 });
         });
     }
